@@ -15,17 +15,18 @@ export function Number({ value }: Props) {
   }, [session]);
 
   const handleClick = useCallback(() => {
+    if (flipped) return;
     if (status !== GameStatus.running) return;
     if (session !== GameSession.waiting) return;
 
     add(value);
     setFlipped(true);
-  }, [add, value, session, status]);
+  }, [add, value, session, status, flipped]);
 
   return (
     <button
       onClick={handleClick}
-      className="aspect-square bg-gray-300 rounded-full border-2 hover:border-cyan-500 transition-colors font-bold text-2xl"
+      className="text-2xl font-bold transition-colors bg-gray-300 border-2 rounded-full aspect-square hover:border-cyan-500"
     >
       {flipped && `${value}`}
     </button>
